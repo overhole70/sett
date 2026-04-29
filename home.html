@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+
+body{
+  background:#0a0a0a;
+  color:#fff;
+}
+
+/* Header */
+.header{
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-weight:900;
+}
+
+/* Notification Button */
+.notify{
+  background:#00ff88;
+  color:#000;
+  border:none;
+  padding:10px 15px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+/* Profile */
+.profile{
+  background:#111;
+  margin:15px;
+  padding:20px;
+  border-radius:25px;
+  text-align:center;
+}
+
+.avatar{
+  width:90px;height:90px;
+  border-radius:50%;
+  background:url('https://i.pravatar.cc/200') center/cover;
+  margin:auto;
+  box-shadow:0 0 20px #00ff88;
+}
+
+.name{margin-top:10px;font-weight:900;font-size:20px}
+.username{color:#00ff88}
+
+/* Button */
+.btn{
+  margin-top:15px;
+  padding:12px;
+  width:100%;
+  border:none;
+  border-radius:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+.primary{background:#00ff88;color:#000}
+
+/* Posts */
+.posts{margin:15px}
+.card{
+  background:#111;
+  padding:15px;
+  border-radius:20px;
+  margin-bottom:10px;
+}
+
+/* Nav */
+.nav{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#111;
+  display:flex;
+  justify-content:space-around;
+  padding:15px;
+}
+
+.nav a{color:#aaa;text-decoration:none;font-weight:700}
+.nav a.active{color:#00ff88}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <span>🏠 الصفحة الرئيسية</span>
+  <button class="notify" onclick="sendNotification()">🔔 إشعار</button>
+</div>
+
+<div class="profile">
+  <div class="avatar"></div>
+  <div class="name">Over Hole</div>
+  <div class="username">@overhole</div>
+  <button class="btn primary">متابعة</button>
+</div>
+
+<div class="posts">
+  <div class="card">🔥 مشروع GTA</div>
+  <div class="card">⚡ FPS Boost</div>
+  <div class="card">🎮 PUBG Mod</div>
+</div>
+
+<div class="nav">
+  <a class="active" href="home.html">Home</a>
+  <a href="settings.html">Settings</a>
+</div>
+
+<script>
+function sendNotification(){
+  if (!("Notification" in window)) {
+    alert("المتصفح لا يدعم الإشعارات");
+    return;
+  }
+
+  if (Notification.permission === "granted") {
+    new Notification("🔥 إشعار جديد", {
+      body: "تم الضغط على زر الإشعار!",
+      icon: "https://cdn-icons-png.flaticon.com/512/1827/1827392.png"
+    });
+  } 
+  else if (Notification.permission !== "denied") {
+    Notification.requestPermission().then(permission => {
+      if (permission === "granted") {
+        new Notification("🔥 إشعار جديد", {
+          body: "تم تفعيل الإشعارات!",
+        });
+      }
+    });
+  } else {
+    alert("تم رفض الإشعارات ❌");
+  }
+}
+</script>
+
+</body>
+</html>
